@@ -1,0 +1,19 @@
+package com.temporal.vehicle.common.workflow;
+
+import io.temporal.workflow.WorkflowInterface;
+import io.temporal.workflow.WorkflowMethod;
+import io.temporal.workflow.SignalMethod;
+import io.temporal.workflow.QueryMethod;
+import com.temporal.vehicle.common.model.VehicleTelemetry;
+
+@WorkflowInterface
+public interface VehicleTelemetryWorkflow {
+    @WorkflowMethod
+    void processTelemetry(VehicleTelemetry telemetry);
+
+    @SignalMethod
+    void updateTelemetry(VehicleTelemetry telemetry);
+
+    @QueryMethod
+    VehicleTelemetry getCurrentState();
+} 
