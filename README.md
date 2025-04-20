@@ -6,24 +6,24 @@ This project demonstrates a vehicle telemetry system using Temporal for workflow
 
 - Java 17 or higher
 - Maven
-- MongoDB
-- Kafka
+- MongoDB (via Homebrew)
+- Kafka (via Homebrew)
 - Temporal CLI
 
 ## Running the Services
 
 ### 1. Start MongoDB
 ```bash
-mongod
+brew services start mongodb-community
 ```
 
 ### 2. Start Kafka
 ```bash
 # Start Zookeeper
-zookeeper-server-start /path/to/kafka/config/zookeeper.properties
+brew services start zookeeper
 
 # Start Kafka Server
-kafka-server-start /path/to/kafka/config/server.properties
+brew services start kafka
 ```
 
 ### 3. Start Temporal Server
