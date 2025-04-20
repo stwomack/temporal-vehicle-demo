@@ -70,7 +70,6 @@ The system consists of two main components:
 - Server port: 8081
 - Kafka: localhost:9092
 - Temporal server: localhost:7233
-- MongoDB: localhost:27017
 
 ## API Endpoints
 
