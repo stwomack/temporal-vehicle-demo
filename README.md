@@ -71,17 +71,6 @@ The system consists of two main components:
 - Kafka: localhost:9092
 - Temporal server: localhost:7233
 
-## API Endpoints
-
-### Telemetry Workflow Service
-- POST `/api/telemetry/start` - Start a new telemetry workflow
-- GET `/api/telemetry/{workflowId}` - Get workflow status
-- POST `/api/telemetry/{workflowId}/stop` - Stop a workflow
-
-### Telemetry Listener Service
-- POST `/api/telemetry/events` - Send telemetry events
-- GET `/api/telemetry/health` - Health check endpoint
-
 ## Development
 
 ### Building
