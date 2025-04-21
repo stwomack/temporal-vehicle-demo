@@ -32,7 +32,6 @@ public class VehicleTelemetryWorkflowImpl implements VehicleTelemetryWorkflow {
         currentState = activities.enrichTelemetry(currentState);
 //        Workflow.sleep(Duration.ofSeconds(1)); // YOLO
         activities.persistTelemetry(currentState);
-//        currentState = activities.persistTelemetry(currentState); //TODO Implement this
         log.info("Completed processing telemetry for VIN: {}", currentState.getVin());
     }
 

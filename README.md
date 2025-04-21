@@ -121,14 +121,7 @@ You can test the system by sending telemetry data to the Kafka topic. Here are a
 
 1. Using kafkacat:
 ```bash
-echo '{"vin":"ABC123","speed":80,"fuelLevel":75,"engineTemperature":85,"latitude":37.7749,"longitude":-122.4194,"timestamp":"2024-03-20T12:00:00Z"}' | kafkacat -b localhost:9092 -t vehicle-telemetry -P
-```
-
-2. Using curl (if you have a REST endpoint):
-```bash
-curl -X POST http://localhost:8080/api/telemetry \
-  -H "Content-Type: application/json" \
-  -d '{"vin":"ABC123","speed":80,"fuelLevel":75,"engineTemperature":85,"latitude":37.7749,"longitude":-122.4194,"timestamp":"2024-03-20T12:00:00Z"}'
+echo '{"vin":"CAR12345","speed":80,"fuelLevel":75,"engineTemperature":85,"latitude":37.7749,"longitude":-122.4194,"timestamp":"2024-03-20T12:00:00Z"}' | kcat -b localhost:9092 -t vehicle-telemetry -P
 ```
 
 ### Verifying the Results
@@ -139,8 +132,9 @@ mongosh
 use vehicle_telemetry
 db.vehicle_telemetry.find()
 ```
+2. Alternatively, use MongoDB Compass GUI
 
-2. Check Temporal Web UI at http://localhost:8233
+3. Check Temporal Web UI at http://localhost:8233
 
 ## Troubleshooting
 
