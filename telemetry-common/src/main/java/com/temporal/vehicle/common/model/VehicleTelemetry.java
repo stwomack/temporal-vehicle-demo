@@ -1,5 +1,6 @@
 package com.temporal.vehicle.common.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +12,8 @@ import java.time.Instant;
 @Data
 @Getter
 @Setter
-@Document(collection = "vehicle_telemetry")
+@Document(collection = "vehicleTelemetry")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class VehicleTelemetry {
     @Id
     private String vin;
