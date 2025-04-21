@@ -14,7 +14,6 @@ import java.time.Instant;
 @Document(collection = "vehicle_telemetry")
 public class VehicleTelemetry {
     @Id
-    private String id;
     private String vin;
     private double speed;
     private double fuelLevel;

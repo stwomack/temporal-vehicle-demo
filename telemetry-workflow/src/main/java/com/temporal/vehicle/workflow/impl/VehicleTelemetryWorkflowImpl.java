@@ -29,14 +29,11 @@ public class VehicleTelemetryWorkflowImpl implements VehicleTelemetryWorkflow {
         
         // Validate telemetry
         currentState = activities.validateTelemetry(telemetry);
-        
-        // Enrich telemetry
         currentState = activities.enrichTelemetry(currentState);
-        
-        // Persist telemetry
+        Workflow.sleep(Duration.ofSeconds(30)); // YOLO
         activities.persistTelemetry(currentState);
-        
-        log.info("Completed processing telemetry for VIN: {}", telemetry.getVin());
+//        currentState = activities.persistTelemetry(currentState); //TODO Implement this
+        log.info("Completed processing telemetry for VIN: {}", currentState.getVin());
     }
 
     @Override

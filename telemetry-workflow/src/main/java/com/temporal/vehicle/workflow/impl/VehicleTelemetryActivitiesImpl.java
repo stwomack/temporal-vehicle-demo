@@ -5,6 +5,9 @@ import com.temporal.vehicle.common.model.VehicleTelemetry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -50,8 +53,7 @@ public class VehicleTelemetryActivitiesImpl implements VehicleTelemetryActivitie
 
     @Override
     public void persistTelemetry(VehicleTelemetry telemetry) {
-        log.info("Persisting telemetry for VIN: {}", telemetry.getVin());
-        telemetry.setProcessed(true);
+        log.info("Persisting telemetry for VIN: {}, speed: {}", telemetry.getVin(), telemetry.getSpeed());
         mongoTemplate.save(telemetry);
     }
 } 
