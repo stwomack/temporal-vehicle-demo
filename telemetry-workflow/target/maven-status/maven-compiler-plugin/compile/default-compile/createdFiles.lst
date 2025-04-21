@@ -1,6 +1,0 @@
-com/temporal/vehicle/workflow/impl/VehicleTelemetryWorkflowImpl.class
-com/temporal/vehicle/workflow/config/WorkerConfig.class
-com/temporal/vehicle/workflow/config/MongoConfig.class
-com/temporal/vehicle/workflow/TelemetryWorkflowApplication.class
-com/temporal/vehicle/workflow/impl/VehicleTelemetryActivitiesImpl.class
-com/temporal/vehicle/workflow/config/TemporalConfig.class
