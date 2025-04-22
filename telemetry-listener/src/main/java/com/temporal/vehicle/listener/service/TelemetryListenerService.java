@@ -1,7 +1,6 @@
 package com.temporal.vehicle.listener.service;
 
 import com.temporal.vehicle.common.model.VehicleTelemetry;
-import com.temporal.vehicle.common.workflow.VehicleTelemetryWorkflow;
 import io.temporal.client.WorkflowClient;
 import io.temporal.client.WorkflowOptions;
 import io.temporal.client.WorkflowStub;
@@ -9,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
+
+import java.time.Duration;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +30,7 @@ public class TelemetryListenerService {
                 WorkflowOptions.newBuilder()
                         .setWorkflowId(workflowId)
                         .setTaskQueue(taskQueue)
+                        .setWorkflowExecutionTimeout(Duration.ofDays(36000))
                         .build());
 
         untypedWorkflowStub.signalWithStart("updateTelemetry", new Object[] {telemetry}, new Object[] {telemetry});

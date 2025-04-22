@@ -56,4 +56,9 @@ public class VehicleTelemetryActivitiesImpl implements VehicleTelemetryActivitie
         log.info("Persisting telemetry for VIN: {}, speed: {}", telemetry.getVin(), telemetry.getSpeed());
         mongoTemplate.save(telemetry);
     }
+
+    @Override
+    public void performFinalProcessing(VehicleTelemetry currentState) {
+        log.info("BYE BYE CAR!");
+    }
 } 

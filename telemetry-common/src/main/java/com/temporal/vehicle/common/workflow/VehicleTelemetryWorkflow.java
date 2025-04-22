@@ -14,6 +14,9 @@ public interface VehicleTelemetryWorkflow {
     @SignalMethod
     void updateTelemetry(VehicleTelemetry telemetry);
 
+    @SignalMethod
+    void vehicleEndOfLife();
+
     @QueryMethod
     VehicleTelemetry getCurrentState();
 } 
