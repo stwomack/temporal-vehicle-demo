@@ -26,7 +26,7 @@ public class VehicleTelemetryWorkflowImpl implements VehicleTelemetryWorkflow {
     }
 
     @Override
-    public void processTelemetry(VehicleTelemetry telemetry) {
+    public VehicleTelemetry processTelemetry(VehicleTelemetry telemetry) {
         log.info("Processing telemetry for VIN: {}", telemetry.getVin());
         info = Workflow.getInfo();
 
@@ -36,10 +36,16 @@ public class VehicleTelemetryWorkflowImpl implements VehicleTelemetryWorkflow {
             activities.persistTelemetry(currentState);
             log.info("Completed processing telemetry input for VIN: {}", currentState.getVin());
             Workflow.await(() -> isEndOfLife);
-            activities.performFinalProcessing(currentState);
+            if (isEndOfLife) {
+                activities.performFinalProcessing(currentState);
+                break;
+            }
         }
 
-        Workflow.continueAsNew(telemetry);
+        if (!isEndOfLife) {
+            Workflow.continueAsNew(telemetry);
+        }
+        return currentState;
     }
 
     @Override
@@ -60,4 +66,4 @@ public class VehicleTelemetryWorkflowImpl implements VehicleTelemetryWorkflow {
     public VehicleTelemetry getCurrentState() {
         return currentState;
     }
-} 
+}

@@ -9,7 +9,7 @@ import com.temporal.vehicle.common.model.VehicleTelemetry;
 @WorkflowInterface
 public interface VehicleTelemetryWorkflow {
     @WorkflowMethod
-    void processTelemetry(VehicleTelemetry telemetry);
+    VehicleTelemetry processTelemetry(VehicleTelemetry telemetry);
 
     @SignalMethod
     void updateTelemetry(VehicleTelemetry telemetry);

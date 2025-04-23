@@ -58,7 +58,8 @@ public class VehicleTelemetryActivitiesImpl implements VehicleTelemetryActivitie
     }
 
     @Override
-    public void performFinalProcessing(VehicleTelemetry currentState) {
-        log.info("BYE BYE CAR!");
+    public VehicleTelemetry performFinalProcessing(VehicleTelemetry currentState) {
+        log.info("Going to junkyard now. Bye!!");
+        return currentState;
     }
 } 

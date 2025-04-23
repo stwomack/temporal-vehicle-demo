@@ -16,5 +16,5 @@ public interface VehicleTelemetryActivities {
     void persistTelemetry(VehicleTelemetry telemetry);
 
     @ActivityMethod
-    void performFinalProcessing(VehicleTelemetry currentState);
+    VehicleTelemetry performFinalProcessing(VehicleTelemetry currentState);
 }

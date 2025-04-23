@@ -25,14 +25,20 @@ public class TelemetryListenerService {
         String workflowId = "vehicle-telemetry-" + telemetry.getVin();
         String taskQueue = "vehicle-telemetry-queue";
 
-        // Create workflow stub
-        WorkflowStub untypedWorkflowStub = workflowClient.newUntypedWorkflowStub("VehicleTelemetryWorkflow",
-                WorkflowOptions.newBuilder()
-                        .setWorkflowId(workflowId)
-                        .setTaskQueue(taskQueue)
-                        .setWorkflowExecutionTimeout(Duration.ofDays(36000))
-                        .build());
+        try {
+            WorkflowStub existingWorkflowStub = workflowClient.newUntypedWorkflowStub(workflowId);
+            existingWorkflowStub.signal("updateTelemetry", telemetry);
+            log.info("Sent update signal to existing workflow for VIN: {}", telemetry.getVin());
+        } catch (io.temporal.client.WorkflowNotFoundException ex) {
+            WorkflowStub newWorkflowStub = workflowClient.newUntypedWorkflowStub("VehicleTelemetryWorkflow",
+                    WorkflowOptions.newBuilder()
+                            .setWorkflowId(workflowId)
+                            .setTaskQueue(taskQueue)
+                            .setWorkflowExecutionTimeout(Duration.ofDays(36000))
+                            .build());
 
-        untypedWorkflowStub.signalWithStart("updateTelemetry", new Object[] {telemetry}, new Object[] {telemetry});
+            newWorkflowStub.start(telemetry);
+            log.info("Started new workflow for VIN: {}", telemetry.getVin());
+        }
     }
 }
