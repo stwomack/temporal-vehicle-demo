@@ -45,6 +45,12 @@ cd telemetry-listener
 mvn spring-boot:run
 ```
 
+#### Start the test script
+`./test-script.sh`
+
+#### When ready to end the lifespan of the vehicle, send the signal
+`temporal workflow signal --workflow-id vehicle-telemetry-CAR12345 --name vehicleEndOfLife`
+
 ## Architecture
 
 The system consists of two main components:
@@ -70,6 +76,9 @@ The system consists of two main components:
 - Server port: 8081
 - Kafka: localhost:9092
 - Temporal server: localhost:7233
+
+### Temporal GUI
+- http://localhost:8233/
 
 ## Development
 
@@ -123,6 +132,7 @@ You can test the system by sending telemetry data to the Kafka topic. Here are a
 ```bash
 echo '{"vin":"CAR12345","speed":80,"fuelLevel":75,"engineTemperature":85,"latitude":37.7749,"longitude":-122.4194,"timestamp":"2024-03-20T12:00:00Z"}' | kcat -b localhost:9092 -t vehicle-telemetry -P
 ```
+Alternatively, just run the test script, which sends 100 telemetry streams for one car. Edit/Change as needed
 
 ### Verifying the Results
 
