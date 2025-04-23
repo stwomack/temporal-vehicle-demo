@@ -129,8 +129,8 @@ echo '{"vin":"CAR12345","speed":80,"fuelLevel":75,"engineTemperature":85,"latitu
 1. Check MongoDB for persisted data:
 ```bash
 mongosh
-use vehicle_telemetry
-db.vehicle_telemetry.find()
+use vehicletelemetry
+db.vehicleTelemetry.find()
 ```
 2. Alternatively, use MongoDB Compass GUI
 
