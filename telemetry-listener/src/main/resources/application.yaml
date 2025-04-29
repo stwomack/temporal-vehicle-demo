@@ -1,0 +1,24 @@
+server:
+  port: 8081
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: telemetry-listener-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: com.temporal.vehicle.common.model
+        spring.json.value.default.type: com.temporal.vehicle.common.model.VehicleTelemetry
+        spring.json.use.type.headers: false
+
+temporal:
+  namespace: default
+  host: localhost
+  port: 7233
+
+kafka:
+  topic:
+    vehicle-telemetry: vehicle-telemetry

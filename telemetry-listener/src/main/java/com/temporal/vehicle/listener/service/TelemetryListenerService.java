@@ -28,7 +28,7 @@ public class TelemetryListenerService {
         try {
             WorkflowStub existingWorkflowStub = workflowClient.newUntypedWorkflowStub(workflowId);
             existingWorkflowStub.signal("updateTelemetry", telemetry);
-            log.info("Sent update signal to existing workflow for VIN: {}", telemetry.getVin());
+         log.info("Processing Kafka message for VIN: {}", telemetry.getVin());
         } catch (io.temporal.client.WorkflowNotFoundException ex) {
             WorkflowStub newWorkflowStub = workflowClient.newUntypedWorkflowStub("VehicleTelemetryWorkflow",
                     WorkflowOptions.newBuilder()

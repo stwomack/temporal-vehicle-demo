@@ -15,5 +15,5 @@ public interface VehicleTelemetryWorkflow {
     void vehicleEndOfLife();
 
     @QueryMethod
-    VehicleTelemetry getCurrentState();
+    VehicleTelemetry getVehicleTelemetryCurrentState();
 } 

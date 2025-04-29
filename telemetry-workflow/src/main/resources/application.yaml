@@ -1,0 +1,18 @@
+# Server Configuration
+server:
+  port: 8082
+
+# Temporal Configuration
+temporal:
+  namespace: default
+  host: localhost
+  port: 7233
+  task-queue: vehicle-telemetry-queue
+
+# MongoDB Configuration
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: vehicletelemetrydb

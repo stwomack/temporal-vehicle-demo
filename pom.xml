@@ -20,7 +20,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-boot.version>3.2.3</spring-boot.version>
-        <temporal.version>1.22.2</temporal.version>
+        <temporal.version>1.23.2</temporal.version>
         <kafka.version>3.6.1</kafka.version>
         <mongodb.version>4.11.1</mongodb.version>
         <lombok.version>1.18.30</lombok.version>
