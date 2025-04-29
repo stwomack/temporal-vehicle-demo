@@ -3,7 +3,7 @@ telemetry-common/target
 telemetry-listener/target
 telemetry-workflow/target
 .idea
-
+.vscode/
 
 
 
