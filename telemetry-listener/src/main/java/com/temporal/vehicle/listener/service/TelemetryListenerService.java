@@ -25,20 +25,14 @@ public class TelemetryListenerService {
         String workflowId = "vehicle-telemetry-" + telemetry.getVin();
         String taskQueue = "vehicle-telemetry-queue";
 
-        try {
-            WorkflowStub existingWorkflowStub = workflowClient.newUntypedWorkflowStub(workflowId);
-            existingWorkflowStub.signal("updateTelemetry", telemetry);
-         log.info("Processing Kafka message for VIN: {}", telemetry.getVin());
-        } catch (io.temporal.client.WorkflowNotFoundException ex) {
-            WorkflowStub newWorkflowStub = workflowClient.newUntypedWorkflowStub("VehicleTelemetryWorkflow",
-                    WorkflowOptions.newBuilder()
-                            .setWorkflowId(workflowId)
-                            .setTaskQueue(taskQueue)
-                            .setWorkflowExecutionTimeout(Duration.ofDays(36000))
-                            .build());
+        WorkflowStub workflowStub = workflowClient.newUntypedWorkflowStub("VehicleTelemetryWorkflow",
+                WorkflowOptions.newBuilder()
+                        .setWorkflowId(workflowId)
+                        .setTaskQueue(taskQueue)
+                        .setWorkflowExecutionTimeout(Duration.ofDays(36000))
+                        .build());
 
-            newWorkflowStub.start(telemetry);
-            log.info("Started new workflow for VIN: {}", telemetry.getVin());
-        }
+        workflowStub.signalWithStart("updateTelemetry", new Object[]{telemetry}, new Object[]{telemetry});
+        log.info("SignalWithStart executed for VIN: {} - will start new workflow if needed or signal existing one", telemetry.getVin());
     }
 }
