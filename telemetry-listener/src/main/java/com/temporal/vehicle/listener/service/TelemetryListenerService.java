@@ -20,7 +20,7 @@ public class TelemetryListenerService {
 
     @KafkaListener(topics = "${kafka.topic.vehicle-telemetry}", groupId = "${spring.kafka.consumer.group-id}")
     public void listen(VehicleTelemetry telemetry) {
-        log.info("Received telemetry for VIN: {}", telemetry.getVin());
+        log.info("Processing Kafka message for VIN: {}", telemetry.getVin());
 
         String workflowId = "vehicle-telemetry-" + telemetry.getVin();
         String taskQueue = "vehicle-telemetry-queue";
