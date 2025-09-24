@@ -17,9 +17,5 @@
             <artifactId>telemetry-common</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
-        </dependency>
     </dependencies>
 </project>
