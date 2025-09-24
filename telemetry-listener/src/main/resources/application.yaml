@@ -2,6 +2,15 @@ server:
   port: 8081
 
 spring:
+  application:
+    name: temporal-vehicle-telemetry-listener
+  temporal:
+    connection:
+      target: localhost:7233
+      namespace: default
+    workers-auto-discovery:
+      packages:
+        - com.temporal.vehicle
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
@@ -14,11 +23,31 @@ spring:
         spring.json.value.default.type: com.temporal.vehicle.common.model.VehicleTelemetry
         spring.json.use.type.headers: false
 
-temporal:
-  namespace: default
-  host: localhost
-  port: 7233
-
 kafka:
   topic:
     vehicle-telemetry: vehicle-telemetry
+
+logging:
+  level:
+    io.temporal: DEBUG
+    com.example: DEBUG
+    io.opentelemetry: DEBUG
+  pattern:
+    console: "%d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+
+opentelemetry:
+  sdk:
+    service:
+      name: temporal-telemetry-listener
+  traces:
+    exporter: otlp
+    endpoint: http://localhost:4317

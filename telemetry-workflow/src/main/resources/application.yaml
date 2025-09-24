@@ -2,17 +2,43 @@
 server:
   port: 8082
 
-# Temporal Configuration
-temporal:
-  namespace: default
-  host: localhost
-  port: 7233
-  task-queue: vehicle-telemetry-queue
-
-# MongoDB Configuration
 spring:
+  application:
+    name: temporal-vehicle-telemetry-workflow
+  temporal:
+    connection:
+      target: localhost:7233
+      namespace: default
+    workers-auto-discovery:
+      packages:
+        - com.temporal.vehicle
   data:
     mongodb:
       host: localhost
       port: 27017
       database: vehicletelemetrydb
+
+logging:
+  level:
+    io.temporal: DEBUG
+    com.example: DEBUG
+    io.opentelemetry: DEBUG
+  pattern:
+    console: "%d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+
+opentelemetry:
+  sdk:
+    service:
+      name: temporal-telemetry-listener
+  traces:
+    exporter: otlp
+    endpoint: http://localhost:4317
