@@ -2,6 +2,7 @@ package com.temporal.vehicle.workflow.impl;
 
 import com.temporal.vehicle.common.activity.VehicleTelemetryActivities;
 import com.temporal.vehicle.common.model.VehicleTelemetry;
+import io.temporal.spring.boot.ActivityImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
+@ActivityImpl(taskQueues = "vehicle-telemetry-queue")
 public class VehicleTelemetryActivitiesImpl implements VehicleTelemetryActivities {
 
     private final MongoTemplate mongoTemplate;
