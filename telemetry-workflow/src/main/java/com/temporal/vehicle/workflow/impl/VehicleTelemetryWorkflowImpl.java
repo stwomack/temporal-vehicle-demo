@@ -4,6 +4,7 @@ import com.temporal.vehicle.common.activity.VehicleTelemetryActivities;
 import com.temporal.vehicle.common.model.VehicleTelemetry;
 import com.temporal.vehicle.common.workflow.VehicleTelemetryWorkflow;
 import io.temporal.activity.ActivityOptions;
+import io.temporal.spring.boot.WorkflowImpl;
 import io.temporal.workflow.Workflow;
 import io.temporal.workflow.WorkflowInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,7 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 @Slf4j
+@WorkflowImpl(taskQueues = "vehicle-telemetry-queue")
 public class VehicleTelemetryWorkflowImpl implements VehicleTelemetryWorkflow {
     int totalSignalCount = 0;
     private boolean isEndOfLife = false;
