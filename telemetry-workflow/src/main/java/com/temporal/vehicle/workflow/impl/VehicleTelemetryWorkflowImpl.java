@@ -15,8 +15,6 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 @Slf4j
-@Component
-@WorkflowImpl(taskQueues = "vehicle-telemetry-queue")
 public class VehicleTelemetryWorkflowImpl implements VehicleTelemetryWorkflow {
     int totalSignalCount = 0;
     private boolean isEndOfLife = false;

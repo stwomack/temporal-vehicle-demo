@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Generate unique telemetry data for each entry
-for i in {1..100}; do
+for i in {1..10}; do
     # Simulate realistic changing values
     speed=$((RANDOM % 200))
     fuel_level=$((75 - (i / 5)))  # Gradually decrease fuel
