@@ -105,4 +105,4 @@ public class VehicleTelemetryWorkflowImpl implements VehicleTelemetryWorkflow {
     public VehicleTelemetry getVehicleTelemetryCurrentState() {
         return vehicleTelemetryCurrentState;
     }
-}
+}:q!
